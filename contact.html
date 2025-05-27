@@ -1,0 +1,364 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Me</title>
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+        
+        #page-container {
+            width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            background: #1e1e1e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        header {
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: 
+                linear-gradient(135deg, 
+                    rgba(138, 43, 226, 0.2) 0%, 
+                    rgba(0, 0, 0, 0.8) 100%),
+                url('images/music-banner.jpg') center/cover;
+            animation: gradientPulse 15s ease infinite;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 140, 0, 0.7);
+            position: relative;
+            z-index: 2;
+            animation: 
+                titleGlow 3s ease-in-out infinite alternate,
+                floatTitle 6s ease-in-out infinite;
+        }
+        
+        h2 {
+            margin-top: 1rem;
+            font-weight: 300;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 2;
+            animation: fadeInOut 4s ease-in-out infinite;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(90deg, #8a2be2, #ff8c00);
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 2rem;
+            flex: 1;
+            position: relative;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #121212, #3a3a3a);
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8a2be2, #ff8c00);
+            animation: rainbow 5s linear infinite;
+        }
+        
+        .footer-quote {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #8a2be2, #ff8c00);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 99;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            font-size: 1.5rem;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+        }
+        
+        /* Animations */
+        @keyframes gradientPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 10px rgba(255, 140, 0, 0.7); }
+            to { text-shadow: 0 0 20px rgba(255, 140, 0, 0.9), 0 0 30px rgba(138, 43, 226, 0.6); }
+        }
+        
+        @keyframes floatTitle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* ===== CONTACT FORM STYLES ===== */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            background: rgba(40, 40, 40, 0.7);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #ff8c00;
+        }
+        
+        .contact-form {
+            background: rgba(40, 40, 40, 0.7);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #8a2be2;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ff8c00;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(50, 50, 50, 0.5);
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: white;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, #8a2be2, #ff8c00);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-icon {
+            padding: 0.8rem 1.5rem;
+            background: rgba(138, 43, 226, 0.2);
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: rgba(255, 140, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div id="page-container">
+        <header>
+            <h1>Contact Me</h1>
+            <h2>Let's Connect</h2>
+        </header>
+        
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="steps.html">Step by Step</a>
+            <a href="portfolio.html">My Work</a>
+            <a href="resources.html">Resources</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        
+        <main>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><strong>Email:</strong> music@mycareer.com</p>
+                    <p><strong>Location:</strong> Based in Tokyo, Japan</p>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-icon">YouTube</a>
+                        <a href="#" class="social-icon">SoundCloud</a>
+                        <a href="#" class="social-icon">Twitter</a>
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <h3>Send a Message</h3>
+                    
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject">
+                            <option value="collab">Collaboration Inquiry</option>
+                            <option value="feedback">Music Feedback</option>
+                            <option value="other">Other Question</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 My Music Career Path. All rights reserved.</p>
+            <p class="footer-quote">"Music is the universal language of mankind." - Henry Wadsworth Longfellow</p>
+        </footer>
+        
+        <a href="#" class="back-to-top">↑</a>
+    </div>
+
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will respond as soon as possible.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
