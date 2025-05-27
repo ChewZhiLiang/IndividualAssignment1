@@ -1,0 +1,311 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Music Journey</title>
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+        
+        #page-container {
+            width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            background: #1e1e1e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        header {
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: 
+                linear-gradient(135deg, 
+                    rgba(138, 43, 226, 0.2) 0%, 
+                    rgba(0, 0, 0, 0.8) 100%),
+                url('images/music-banner.jpg') center/cover;
+            animation: gradientPulse 15s ease infinite;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 140, 0, 0.7);
+            position: relative;
+            z-index: 2;
+            animation: 
+                titleGlow 3s ease-in-out infinite alternate,
+                floatTitle 6s ease-in-out infinite;
+        }
+        
+        h2 {
+            margin-top: 1rem;
+            font-weight: 300;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 2;
+            animation: fadeInOut 4s ease-in-out infinite;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(90deg, #8a2be2, #ff8c00);
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 2rem;
+            flex: 1;
+            position: relative;
+        }
+        
+        .intro {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #121212, #3a3a3a);
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8a2be2, #ff8c00);
+            animation: rainbow 5s linear infinite;
+        }
+        
+        .footer-quote {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #8a2be2, #ff8c00);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 99;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            font-size: 1.5rem;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+        }
+        
+        /* Music Notes */
+        .music-notes {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            animation: floatNote 10s linear infinite;
+        }
+        
+        .music-notes:nth-child(1) {
+            top: 20%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .music-notes:nth-child(2) {
+            top: 40%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+        
+        .music-notes:nth-child(3) {
+            top: 60%;
+            left: 8%;
+            animation-delay: 4s;
+        }
+        
+        .music-notes:nth-child(4) {
+            top: 30%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+        
+        .music-notes:nth-child(5) {
+            top: 50%;
+            right: 5%;
+            animation-delay: 3s;
+        }
+        
+        /* Animations */
+        @keyframes gradientPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 10px rgba(255, 140, 0, 0.7); }
+            to { text-shadow: 0 0 20px rgba(255, 140, 0, 0.9), 0 0 30px rgba(138, 43, 226, 0.6); }
+        }
+        
+        @keyframes floatTitle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        @keyframes floatNote {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div id="page-container">
+        <header>
+            <h1>The Path to Success</h1>
+            <h2>Achieving Your Career Dreams in Music</h2>
+        </header>
+        
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="steps.html">Step by Step</a>
+            <a href="portfolio.html">My Work</a>
+            <a href="resources.html">Resources</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        
+        <main>
+            <div class="intro">
+                <h3>My Journey to Becoming a Professional Musician</h3>
+                <p>Music has been my passion since childhood, and my dream is to make it my life's work. As a professional musician, I aim to combine performance, composition, and teaching to create a sustainable career doing what I love.</p>
+                
+                <p>The music industry offers diverse paths - from live performance to studio work, from film scoring to music education. My focus is on developing strong instrumental skills while building expertise in music production and technology.</p>
+                
+                <p>This website outlines my roadmap to success, including the steps I need to take and the resources that inspire me along the way. Whether you're on a similar path or just curious about a musician's journey, I hope you find value in these pages.</p>
+            </div>
+            
+            <!-- Floating music notes -->
+            <div class="music-notes">♪</div>
+            <div class="music-notes">♫</div>
+            <div class="music-notes">♩</div>
+            <div class="music-notes">♬</div>
+            <div class="music-notes">♭</div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 My Music Career Path. All rights reserved.</p>
+            <p class="footer-quote">"Where words fail, music speaks." - Hans Christian Andersen</p>
+        </footer>
+        
+        <a href="#" class="back-to-top">↑</a>
+    </div>
+
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        // Music notes animation
+        const notes = document.querySelectorAll('.music-notes');
+        notes.forEach((note, index) => {
+            // Randomize starting positions slightly
+            const randomX = Math.random() * 50 - 25;
+            const randomY = Math.random() * 50 - 25;
+            note.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            
+            // Randomize animation duration
+            const duration = 8 + Math.random() * 5;
+            note.style.animationDuration = `${duration}s`;
+        });
+    </script>
+</body>
+</html>

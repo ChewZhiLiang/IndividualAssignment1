@@ -1,0 +1,333 @@
+<!-- resources.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Resources</title>
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+        
+        #page-container {
+            width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            background: #1e1e1e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        header {
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: 
+                linear-gradient(135deg, 
+                    rgba(138, 43, 226, 0.2) 0%, 
+                    rgba(0, 0, 0, 0.8) 100%),
+                url('images/music-banner.jpg') center/cover;
+            animation: gradientPulse 15s ease infinite;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 140, 0, 0.7);
+            position: relative;
+            z-index: 2;
+            animation: 
+                titleGlow 3s ease-in-out infinite alternate,
+                floatTitle 6s ease-in-out infinite;
+        }
+        
+        h2 {
+            margin-top: 1rem;
+            font-weight: 300;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 2;
+            animation: fadeInOut 4s ease-in-out infinite;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(90deg, #8a2be2, #ff8c00);
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 2rem;
+            flex: 1;
+            position: relative;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #121212, #3a3a3a);
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8a2be2, #ff8c00);
+            animation: rainbow 5s linear infinite;
+        }
+        
+        .footer-quote {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #8a2be2, #ff8c00);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 99;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            font-size: 1.5rem;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+        }
+        
+        /* Animations */
+        @keyframes gradientPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 10px rgba(255, 140, 0, 0.7); }
+            to { text-shadow: 0 0 20px rgba(255, 140, 0, 0.9), 0 0 30px rgba(138, 43, 226, 0.6); }
+        }
+        
+        @keyframes floatTitle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* ===== RESOURCES STYLES ===== */
+        .resources-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .resource-section {
+            margin-bottom: 3rem;
+        }
+        
+        .resource-section h2 {
+            color: #ff8c00;
+            border-bottom: 2px solid #8a2be2;
+            padding-bottom: 0.5rem;
+            text-align: left;
+            animation: none;
+        }
+        
+        .resource-card {
+            background: rgba(40, 40, 40, 0.7);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #8a2be2;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            border-left-color: #ff8c00;
+            box-shadow: 0 10px 20px rgba(255, 140, 0, 0.1);
+        }
+        
+        .resource-card h3 {
+            color: #ff8c00;
+            margin-top: 0;
+        }
+        
+        .resource-card a {
+            color: #8a2be2;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .resource-card a:hover {
+            color: #ff8c00;
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <div id="page-container">
+        <header>
+            <h1>Music Resources</h1>
+            <h2>Tools & Inspiration</h2>
+        </header>
+        
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="steps.html">Step by Step</a>
+            <a href="portfolio.html">My Work</a>
+            <a href="resources.html">Resources</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        
+        <main>
+            <div class="resources-container">
+                <div class="resource-section">
+                    <h2>Production Tools</h2>
+                    
+                    <div class="resource-card">
+                        <h3>FL Studio</h3>
+                        <p>The digital audio workstation I use for all my music production and composition work.</p>
+                        <a href="https://www.image-line.com/" target="_blank">Visit FL Studio →</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Audacity</h3>
+                        <p>Free, open source audio editing software great for beginners.</p>
+                        <a href="https://www.audacityteam.org/" target="_blank">Visit Audacity →</a>
+                    </div>
+                </div>
+                
+                <div class="resource-section">
+                    <h2>Learning Resources</h2>
+                    
+                    <div class="resource-card">
+                        <h3>Music Theory</h3>
+                        <p>Free online music theory lessons and exercises to build your foundation.</p>
+                        <a href="https://www.musictheory.net/" target="_blank">Learn Music Theory →</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Synthesia</h3>
+                        <p>Interactive piano learning software that helped me develop my keyboard skills.</p>
+                        <a href="https://synthesiagame.com/" target="_blank">Visit Synthesia →</a>
+                    </div>
+                </div>
+                
+                <div class="resource-section">
+                    <h2>Inspiration</h2>
+                    
+                    <div class="resource-card">
+                        <h3>DECO*27</h3>
+                        <p>One of my biggest musical inspirations in the Vocaloid industry.</p>
+                        <a href="https://www.youtube.com/@DECO27" target="_blank">Visit DECO*27 →</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>KIRA</h3>
+                        <p>My favourite English Vocaloid music producer.</p>
+                        <a href="https://www.youtube.com/@KIRA_prod" target="_blank">Visit KIRA →</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2024 My Music Career Path. All rights reserved.</p>
+            <p class="footer-quote">"Creativity is intelligence having fun." - Albert Einstein</p>
+        </footer>
+        
+        <a href="#" class="back-to-top">↑</a>
+    </div>
+
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>
